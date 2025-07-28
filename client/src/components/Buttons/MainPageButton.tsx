@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 //images
-import textbubble from "../../assets/textbubble.png"
+import textbubble from "@/assets/textbubble.png"
 
 const MainPageButton = () => {
     return (

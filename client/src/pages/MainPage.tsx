@@ -1,9 +1,9 @@
 // components
-import MainPageButton from "../components/Buttons/MainPageButton";
+import MainPageButton from "@/components/Buttons/MainPageButton";
 // styled
 import styled from "styled-components";
 // images
-import backgroundImage from "../assets/background.jpg"
+import backgroundImage from "@/assets/background.jpg"
 
 const MainPage = () => {
     return (
