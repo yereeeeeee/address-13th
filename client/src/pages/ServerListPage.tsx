@@ -10,6 +10,7 @@ import { FolderContainer, FolderBody, FolderTab } from "@/styles/FolderBox";
 // hooks
 import setClass from "@/hooks/setClass";
 import setRegion from "@/hooks/setRegion";
+import { setTeamCode } from "@/utils/setTeamCode";
 
 // components
 import RegionSelectTab from "@/components/Buttons/RegionSelectTab";
@@ -32,6 +33,10 @@ const ServerListPage = () => {
     null
   );
   const [classAnchorEl, setClassAnchorEl] = useState<null | HTMLElement>(null);
+
+  // team code
+  const teamCodeList = setTeamCode({ selectedRegion, selectedClass });
+  console.log(teamCodeList);
 
   return (
     <ListPageBackground>
@@ -62,7 +67,16 @@ const ServerListPage = () => {
 
         {/* 팀 선택 */}
         <ButtonList>
-          <TeamButton>E101</TeamButton>
+          {teamCodeList.map((team, idx) => (
+            <TeamButton
+              key={idx}
+              onClick={() => (window.location.href = team.teamServerAddress)}
+            >
+              {team.regionCodeName}
+              {selectedClass}
+              {String(idx + 1).padStart(2, "0")}
+            </TeamButton>
+          ))}
         </ButtonList>
       </ListWrap>
     </ListPageBackground>
