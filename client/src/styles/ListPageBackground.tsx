@@ -7,6 +7,9 @@ const ListPageBackground = styled.div`
   background-image: url(${backgroundImage});
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default ListPageBackground;
