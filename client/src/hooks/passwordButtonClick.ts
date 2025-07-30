@@ -7,6 +7,7 @@ const passwordButtonClick = (navigate: (path: string) => void) => {
     }
 
     if (pw === import.meta.env.VITE_PASSWORD) {
+      localStorage.setItem("isLoggedin", "true");
       navigate("/list");
       return;
     } else {
