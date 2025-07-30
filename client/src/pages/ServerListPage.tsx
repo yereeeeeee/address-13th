@@ -5,6 +5,8 @@ import ListPageBackground from "@/styles/ListPageBackground";
 import ListWrap from "@/styles/ListWrap";
 import ButtonList from "@/styles/ButtonList";
 import TeamButton from "@/components/Buttons/TeamButton";
+import TextBox from "@/styles/TextBox";
+import NumInput from "@/styles/NumInput";
 import { FolderContainer, FolderBody, FolderTab } from "@/styles/FolderBox";
 
 // hooks
@@ -22,10 +24,12 @@ const etc_length = 2;
 const ServerListPage = () => {
   const [selectedRegion, setselectedRegion] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
+  const [selectedTeamCnt, setSelectedTeamCnt] = useState("");
 
   useEffect(() => {
     setselectedRegion(localStorage.getItem("region") ?? "");
     setSelectedClass(localStorage.getItem("class") ?? "");
+    setSelectedTeamCnt(localStorage.getItem("teamCnt") ?? "");
   });
 
   // dropdown menu
@@ -35,12 +39,16 @@ const ServerListPage = () => {
   const [classAnchorEl, setClassAnchorEl] = useState<null | HTMLElement>(null);
 
   // team code
-  const teamCodeList = setTeamCode({ selectedRegion, selectedClass });
-  console.log(teamCodeList);
+  const teamCodeList = setTeamCode({
+    selectedRegion,
+    selectedClass,
+    selectedTeamCnt,
+  });
 
   return (
     <ListPageBackground>
       <ListWrap>
+        {/* Tab 쪽 */}
         <FolderContainer>
           <FolderTab>
             <RegionSelectTab
@@ -66,11 +74,26 @@ const ServerListPage = () => {
         </FolderContainer>
 
         {/* 팀 선택 */}
+        <TextBox>
+          <NumInput
+            type="number"
+            min={1}
+            max={15}
+            defaultValue={selectedTeamCnt}
+            onChange={(e) => {
+              const value = Number(e.target.value);
+              setSelectedTeamCnt(value.toString());
+              localStorage.setItem("teamCnt", value.toString());
+            }}
+          />
+          팀까지 있어요!
+        </TextBox>
+
         <ButtonList>
           {teamCodeList.map((team, idx) => (
             <TeamButton
               key={idx}
-              onClick={() => (window.location.href = team.teamServerAddress)}
+              onClick={() => window.open(team.teamServerAddress, "_blank")}
             >
               {team.regionCodeName}
               {selectedClass}
