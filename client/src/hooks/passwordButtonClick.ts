@@ -8,6 +8,7 @@ const passwordButtonClick = (navigate: (path: string) => void) => {
 
     if (pw === import.meta.env.VITE_PASSWORD) {
       localStorage.setItem("isLoggedin", "true");
+      localStorage.setItem("teamCnt", "10");
       navigate("/list");
       return;
     } else {
