@@ -17,6 +17,7 @@ import { setTeamCode } from "@/utils/setTeamCode";
 // components
 import RegionSelectTab from "@/components/Buttons/RegionSelectTab";
 import ClassSelectTab from "@/components/Buttons/ClassSelectTab";
+import { useNavigate } from "react-router-dom";
 
 const seoul_length = 7;
 const etc_length = 2;
@@ -44,6 +45,17 @@ const ServerListPage = () => {
     selectedClass,
     selectedTeamCnt,
   });
+
+  // 로그인 안 되어 있으면 main page로 리다이렉션
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  useEffect(() => {
+    if (!isLoggedIn) {
+      {
+        navigate("/");
+      }
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <ListPageBackground>
