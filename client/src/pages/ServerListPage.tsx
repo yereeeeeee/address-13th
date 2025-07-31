@@ -48,10 +48,11 @@ const ServerListPage = () => {
 
   // 로그인 안 되어 있으면 main page로 리다이렉션
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const isLoggedIn = localStorage.getItem("isLoggedin");
   useEffect(() => {
     if (!isLoggedIn) {
       {
+        console.log("로그인");
         navigate("/");
       }
     }
@@ -86,20 +87,26 @@ const ServerListPage = () => {
         </FolderContainer>
 
         {/* 팀 선택 */}
-        <TextBox>
-          <NumInput
-            type="number"
-            min={1}
-            max={15}
-            defaultValue={selectedTeamCnt}
-            onChange={(e) => {
-              const value = Number(e.target.value);
-              setSelectedTeamCnt(value.toString());
-              localStorage.setItem("teamCnt", value.toString());
-            }}
-          />
-          팀까지 있어요!
-        </TextBox>
+        {!selectedRegion ? (
+          <TextBox>▲ 지역을 먼저 선택해주세요!</TextBox>
+        ) : !selectedClass ? (
+          <TextBox> 반을 선택해주세요! ▲</TextBox>
+        ) : (
+          <TextBox>
+            <NumInput
+              type="number"
+              min={1}
+              max={15}
+              defaultValue={selectedTeamCnt}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                setSelectedTeamCnt(value.toString());
+                localStorage.setItem("teamCnt", value.toString());
+              }}
+            />
+            개 팀 보기
+          </TextBox>
+        )}
 
         <ButtonList>
           {teamCodeList.map((team, idx) => (
