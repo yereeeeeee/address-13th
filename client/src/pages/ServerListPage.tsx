@@ -7,7 +7,7 @@ import ButtonList from "@/styles/ButtonList";
 import TeamButton from "@/components/Buttons/TeamButton";
 import TextBox from "@/styles/TextBox";
 import NumInput from "@/styles/NumInput";
-import { FolderContainer, FolderBody, FolderTab } from "@/styles/FolderBox";
+import { FolderContainer, FolderTab } from "@/styles/FolderBox";
 
 // hooks
 import setClass from "@/hooks/setClass";
