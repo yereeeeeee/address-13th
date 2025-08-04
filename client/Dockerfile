@@ -17,7 +17,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # 빌드된 정적 파일을 Nginx HTML 폴더로 복사
-COPY --from=build /app/dist /usr/share/nginx/html/13th
+COPY --from=build /app/dist /usr/share/nginx/html/13th/dist
 
 # Nginx 기본 설정 유지
 CMD ["nginx", "-g", "daemon off;"]
