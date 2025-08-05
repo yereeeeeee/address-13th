@@ -19,6 +19,6 @@ FROM nginx:alpine
 # COPY ./nginx/conf.d /etc/nginx/conf.d
 
 # 빌드 결과 복사
-COPY --from=build /app/dist /usr/share/nginx/html/13th
+COPY --from=build /app/build /usr/share/nginx/html/13th
 
 CMD ["nginx", "-g", "daemon off;"]
