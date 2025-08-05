@@ -1,6 +1,5 @@
 const passwordButtonClick = (navigate: (path: string) => void) => {
   const isLoggedin = localStorage.getItem("isLoggedin");
-  console.log(isLoggedin);
   if (isLoggedin) {
     navigate("/list");
     return;
