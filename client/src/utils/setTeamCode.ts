@@ -29,12 +29,13 @@ export const setTeamCode = ({
   const addressCode = import.meta.env.VITE_ADDRESS;
 
   return Array.from({ length: Number(selectedTeamCnt) }, (_, i) => {
-    const teamServerAddress = `http://${projectCode}13${regionCode}${selectedClass}0${
-      i + 1
+    const teamServerAddress = `http://${projectCode}13${regionCode}${selectedClass}${
+      i + 1 < 10 ? `0${i + 1}` : i + 1
     }.${addressCode}`;
+
     return {
-      ["regionCodeName"]: regionCodeName,
-      ["teamServerAddress"]: teamServerAddress,
+      regionCodeName,
+      teamServerAddress,
     };
   });
 };

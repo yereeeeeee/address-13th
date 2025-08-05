@@ -10,5 +10,6 @@ const TeamButton = styled.div`
   padding: 2rem 4rem;
   width: fit-content;
   height: fit-content;
+  color: black;
 `;
 export default TeamButton;
