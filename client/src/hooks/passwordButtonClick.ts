@@ -1,6 +1,10 @@
 const passwordButtonClick = (navigate: (path: string) => void) => {
   const isLoggedin = localStorage.getItem("isLoggedin");
-  if (isLoggedin) navigate("/list");
+  console.log(isLoggedin);
+  if (isLoggedin) {
+    navigate("/list");
+    return;
+  }
 
   while (true) {
     const pw = prompt("비밀번호 주시오");
