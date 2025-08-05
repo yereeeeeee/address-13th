@@ -1,6 +1,4 @@
-# frontend
-
-# 빌드 단계
+# -------- 1단계: 빌드 --------
 FROM node:18 AS build
 
 WORKDIR /app
@@ -9,15 +7,18 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# 소스 코드 복사 및 빌드
+# 소스 복사 & 빌드
 COPY . .
 RUN npm run build
 
-# Nginx 설정 단계
+# -------- 2단계: Nginx --------
 FROM nginx:alpine
 
-# 빌드된 정적 파일을 Nginx HTML 폴더로 복사
-COPY --from=build /app/dist /usr/share/nginx/html/13th/dist
-
 # Nginx 기본 설정 유지
+# 필요한 경우 conf.d에 커스텀 conf 복사 가능
+# COPY ./nginx/conf.d /etc/nginx/conf.d
+
+# 빌드 결과 복사
+COPY --from=build /app/dist /usr/share/nginx/html/13th
+
 CMD ["nginx", "-g", "daemon off;"]
