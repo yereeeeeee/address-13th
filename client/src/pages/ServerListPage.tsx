@@ -87,39 +87,42 @@ const ServerListPage = () => {
         </FolderContainer>
 
         {/* 팀 선택 */}
-        {!selectedRegion ? (
-          <TextBox>▲ 지역을 먼저 선택해주세요!</TextBox>
-        ) : !selectedClass ? (
-          <TextBox> 반을 선택해주세요! ▲</TextBox>
+        {!selectedRegion || !selectedClass ? (
+          !selectedRegion ? (
+            <TextBox>▲ 지역을 먼저 선택해주세요!</TextBox>
+          ) : (
+            <TextBox> 반을 선택해주세요! ▲</TextBox>
+          )
         ) : (
-          <TextBox>
-            <NumInput
-              type="number"
-              min={1}
-              max={15}
-              defaultValue={selectedTeamCnt}
-              onChange={(e) => {
-                const value = Number(e.target.value);
-                setSelectedTeamCnt(value.toString());
-                localStorage.setItem("teamCnt", value.toString());
-              }}
-            />
-            개 팀 보기
-          </TextBox>
+          <>
+            <TextBox>
+              <NumInput
+                type="number"
+                min={1}
+                max={15}
+                defaultValue={selectedTeamCnt}
+                onChange={(e) => {
+                  const value = Number(e.target.value);
+                  setSelectedTeamCnt(value.toString());
+                  localStorage.setItem("teamCnt", value.toString());
+                }}
+              />
+              개 팀 보기
+            </TextBox>
+            <ButtonList>
+              {teamCodeList.map((team, idx) => (
+                <TeamButton
+                  key={idx}
+                  onClick={() => window.open(team.teamServerAddress, "_blank")}
+                >
+                  {team.regionCodeName}
+                  {selectedClass}
+                  {String(idx + 1).padStart(2, "0")}
+                </TeamButton>
+              ))}
+            </ButtonList>
+          </>
         )}
-
-        <ButtonList>
-          {teamCodeList.map((team, idx) => (
-            <TeamButton
-              key={idx}
-              onClick={() => window.open(team.teamServerAddress, "_blank")}
-            >
-              {team.regionCodeName}
-              {selectedClass}
-              {String(idx + 1).padStart(2, "0")}
-            </TeamButton>
-          ))}
-        </ButtonList>
       </ListWrap>
     </ListPageBackground>
   );
