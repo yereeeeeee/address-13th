@@ -25,7 +25,7 @@ export const setTeamCode = ({
   const regionCodeName = regionCode.toUpperCase();
   if (!regionCode) return [];
 
-  const projectCode = import.meta.env.VITE_PROJECT_1;
+  const projectCode = import.meta.env.VITE_PROJECT_2;
   const addressCode = import.meta.env.VITE_ADDRESS;
 
   return Array.from({ length: Number(selectedTeamCnt) }, (_, i) => {
