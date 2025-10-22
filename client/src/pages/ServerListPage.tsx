@@ -20,6 +20,7 @@ import ClassSelectTab from "@/components/Buttons/ClassSelectTab";
 import { useNavigate } from "react-router-dom";
 
 const seoul_length = 7;
+const corp_length = 4;
 const etc_length = 2;
 
 const ServerListPage = () => {
@@ -81,6 +82,7 @@ const ServerListPage = () => {
               setClass={setClass}
               selectedRegion={selectedRegion}
               seoulLength={seoul_length}
+              corpLength={corp_length}
               etcLength={etc_length}
             />
           </FolderTab>

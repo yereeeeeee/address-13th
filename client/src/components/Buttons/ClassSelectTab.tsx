@@ -9,6 +9,7 @@ interface ClassSelectTabProps {
   setClass: (value: string) => void;
   selectedRegion: string;
   seoulLength: number;
+  corpLength: number;
   etcLength: number;
 }
 
@@ -20,9 +21,15 @@ const ClassSelectTab = ({
   setClass,
   selectedRegion,
   seoulLength,
+  corpLength,
   etcLength,
 }: ClassSelectTabProps) => {
-  const length = selectedRegion === "서울" ? seoulLength : etcLength;
+  let length = etcLength;
+  if (selectedRegion === "서울") {
+    length = seoulLength;
+  } else if (selectedRegion === "기업연계") {
+    length = corpLength;
+  }
 
   return (
     <div>
