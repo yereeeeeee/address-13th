@@ -15,6 +15,7 @@ export const setTeamCode = ({
     광주: "GWANGJU",
     구미: "GUMI",
     부울경: "BUG",
+    기업연계: "CORP",
   };
 
   const regionKey = regionMap[selectedRegion];
@@ -25,7 +26,7 @@ export const setTeamCode = ({
   const regionCodeName = regionCode.toUpperCase();
   if (!regionCode) return [];
 
-  const projectCode = import.meta.env.VITE_PROJECT_2;
+  const projectCode = import.meta.env.VITE_PROJECT_3;
   const addressCode = import.meta.env.VITE_ADDRESS;
 
   return Array.from({ length: Number(selectedTeamCnt) }, (_, i) => {
