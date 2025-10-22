@@ -38,18 +38,20 @@ const RegionSelectTab = ({
           },
         }}
       >
-        {["서울", "대전", "광주", "구미", "부울경"].map((region) => (
-          <MenuItem
-            key={region}
-            onClick={() => {
-              setRegion(region);
-              setselectedRegion(region);
-              setRegionAnchorEl(null);
-            }}
-          >
-            {region}
-          </MenuItem>
-        ))}
+        {["서울", "대전", "광주", "구미", "부울경", "기업연계"].map(
+          (region) => (
+            <MenuItem
+              key={region}
+              onClick={() => {
+                setRegion(region);
+                setselectedRegion(region);
+                setRegionAnchorEl(null);
+              }}
+            >
+              {region}
+            </MenuItem>
+          )
+        )}
       </Menu>
     </div>
   );
